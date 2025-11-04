@@ -12,7 +12,19 @@ const Users = ({ userPromise }) => {
         e.preventDefault();
         const name = e.target.name.value;
         const email = e.target.email.value;
+        const user = { name, email };
         console.log(name, email);
+        fetch('http://localhost:3000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then((res) => res.json())
+            .then(data => {
+                console.log("data after post", data)
+            })
     }
     return (
         <div>
